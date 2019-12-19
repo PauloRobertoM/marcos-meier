@@ -1,3 +1,30 @@
+        <section class="livros">
+            <div class="container">
+                <h1 class="text-center">CONFIRA OS LIVROS ESCRITOS PELO PALESTRANTE MARCOS MEIER</h1>
+                <div class="owl-carousel owl-theme owl-livro">
+                    <?php
+                        $args = array(
+                            'posts_per_page' => 20,
+                            'post_type'      => 'livros',
+                        );
+                        $livros = get_posts($args);
+                    ?>
+                    <?php foreach ($livros as $livro) : ?>
+                        <div class="item">
+                            <a href="<?php the_permalink($palestra->ID); ?>">
+                                <?php
+                                    $livros = rwmb_meta('livros_foto', 'type=plupload_image', $livro->ID);
+                                    foreach ( $livros as $livro ) {
+                                        echo "<img src='{$livro['url']}' alt='{$livro['alt']}' />";
+                                    }
+                                ?>
+                            </a>
+                        </div><!-- item -->
+                    <?php endforeach; ?>
+                </div><!-- owl-carousel -->
+            </div><!-- container -->
+        </section><!-- livros -->
+    
         <footer>
             <div class="rodape">
                 <h2><strong>Marcos meier.</strong> Todos os direitos reservados.</h2>
