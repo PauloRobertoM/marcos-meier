@@ -1,24 +1,45 @@
 <?php get_header(); ?>
+    
+    <?php
+        $args = array (
+            'post_status'    => 'publish',
+            'pagination'     => true,
+            'posts_per_page' => '10',
+        );
+        $posts = new WP_Query( $args );
+    ?>
 
     <section class="titulo-interno">
         <h1 class="text-center">BLOG</h1>
     </section><!-- titulo-interno -->
 
-    <section class="interna blog-interna">
+    <section class="interna blog">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-8">
-                    <?php $dia = get_the_date('d'); ?>
-                    <?php $mes = ucfirst(get_the_date('m')); ?>
-                    <?php $ano = get_the_date('Y'); ?>
-                    <span><?php echo "{$dia}.{$mes}.{$ano}"; ?></span>
-                    <h2><?php the_title(); ?></h2>
-                    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-                        <?php if (has_post_thumbnail()) : ?>
-                            <?php the_post_thumbnail(''); ?>
+                    <div class="listagem">
+                        <?php if ( $posts->have_posts() ) : ?>
+                            <?php while ( $posts->have_posts() ) : $posts->the_post(); ?>
+                                <?php $dia = get_the_date('d'); ?>
+                                <?php $mes = ucfirst(get_the_date('m')); ?>
+                                <?php $ano = get_the_date('Y'); ?>
+                                <div class="item">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <?php if (has_post_thumbnail()) : ?>
+                                                <?php the_post_thumbnail(''); ?>
+                                            <?php endif; ?>
+                                        </div><!-- md-6 -->
+                                        <div class="col-md-6 col-sm-6">
+                                            <span><?php echo "{$dia}.{$mes}.{$ano}"; ?></span>
+                                            <h2><?php the_title(); ?></h2>
+                                            <a href="<?php the_permalink(); ?>" class="btn-geral"><i class="fa fa-plus-circle" aria-hidden="true"></i> LEIA MAIS</a>
+                                        </div><!-- md-6 -->
+                                    </div><!-- row -->
+                                </div><!-- item -->
+                            <?php endwhile; ?>
                         <?php endif; ?>
-                        <p><?php the_content(); ?></p>
-                    <?php endwhile; endif; ?>
+                    </div><!-- listagem -->
                 </div><!-- md-8 -->
                 <div class="col-md-4 col-sm-4">
                     <aside>
@@ -66,5 +87,5 @@
             </div><!-- row -->
         </div><!-- container -->
     </section><!-- interna -->
-  
+
 <?php get_footer(); ?>

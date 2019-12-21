@@ -2,7 +2,7 @@
     
     <?php $page = 'home'; ?>
 
-    <?php include 'components/vitrine.php'; ?>
+    <?php get_template_part('components/vitrine'); ?>
 
     <section class="palestras">
         <div class="container">
@@ -33,7 +33,7 @@
                     </div><!-- item -->
                 <?php endforeach; ?>
             </div><!-- owl-carousel -->
-            <iframe width="100%" height="470" src="https://www.youtube.com/embed/sG4RDGRKjzg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <?php get_template_part('components/iframe'); ?>
         </div><!-- container -->
     </section><!-- palestras -->
 
@@ -67,14 +67,6 @@
         </div><!-- container -->
     </section><!-- instagram -->
 
-    <section class="perfil">
-        <div class="item1">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/perfil.jpg">
-        </div><!-- item1 -->
-        <div class="item2">
-            <h1>BIOGRAFIA</h1>
-            <p>Psicólogo, professor de matemática, escritor e mestre em educação.</p>
-        </div><!-- item2 -->
-    </section><!-- perfil -->
+    <?php get_template_part('content', 'sobre'); ?>
 
 <?php get_footer(); ?>

@@ -24,5 +24,5 @@
                     <h4><i class="fa fa-whatsapp" aria-hidden="true"></i> 41 99248.3040 <span>- 41 3107.6448 - meierpalestras@gmail.com</span></h4>
                 </div><!-- containe -->
             </div><!-- topo -->
-            <?php include 'components/menu.php'; ?>
+            <?php get_template_part('components/menu'); ?>
         </header>
